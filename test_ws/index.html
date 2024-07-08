@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset=""UTF-8>
+        <title>ChiChat</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var socket = io.connect("http://localhost:5000")
+                socket.on('connect', function() {
+                    socket.send('User Connected!');
+                });
+
+                socket.on('message' , function(data) {
+                    $('#messages').append($('<p>').text(data));
+                });
+
+                $('#SendBtn').on('click', function() {
+                    socket.send($('#username').val() + ': ' + $('#message').val());
+                    $('#message').val('');
+                });
+            });
+        </script>
+        <div id="messages">
+
+        </div>
+        <input type="text" id="username">
+        <input type="text" id="message">
+        <button id="SendBtn">Send</button>
+        
+    </body>
+</html>
