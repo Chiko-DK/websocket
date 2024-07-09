@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset=""UTF-8>
-        <title>ChiChat</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>
+            Python sending
+        </title>
     </head>
     <body>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var socket = io.connect("http://localhost:5000")
-                socket.on('connect', function() {
-                    socket.send('User Connected!');
-                });
+        <button id="theButton" onClick="postToServer()">Post to Python</button>
+        <h3 id = "info"></h3>
 
-                socket.on('message' , function(data) {
-                    $('#messages').append($('<p>').text(data));
-                });
+        <button id="1" onClick="setNumber(1)">1</button>
+        <button id="2" onClick="setNumber(2)">2</button>
+        <button id="3" onClick="setNumber(3)">3</button>
+        <button id="5" onClick="setNumber(5)">5</button>
+        <button id="8" onClick="setNumber(8)">8</button>
+        <button id="13" onClick="setNumber(13)">13</button>
+        <button id="21" onClick="setNumber(21)">21</button>
 
-                $('#SendBtn').on('click', function() {
-                    socket.send($('#username').val() + ': ' + $('#message').val());
-                    $('#message').val('');
-                });
-            });
-        </script>
-        <div id="messages">
+        <input id="inputName">
 
-        </div>
-        <input type="text" id="username">
-        <input type="text" id="message">
-        <button id="SendBtn">Send</button>
-        
+        <h1>Results</h1>
+        <table id="mapTable" border="1">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Story Points</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <script src="script.js"></script>
     </body>
 </html>
+ 
